@@ -1,0 +1,71 @@
+body {
+  background-color: #f3f2e3;
+  color: #586e75;
+  font-family: Arial;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Droid Serif", Georgia, "Times New Roman", Times, serif;
+  text-rendering: optimizelegibility;
+  color: #586e75;
+}
+h2 {
+  border-bottom: #f9f8f1 solid 2px;
+}
+#text-box .border:hover {
+  border: 1px dashed #f9f8f1;
+}
+#text-box .border {
+  border: 1px solid #f3f2e3;
+}
+#text-box .invisible-input {
+  font-size: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  color: inherit;
+  padding: 0.25em;
+/* Firefox 18- */
+/* Firefox 19+ */
+}
+#text-box .invisible-input::-webkit-input-placeholder {
+  color: #b9c6cb;
+}
+#text-box .invisible-input:-moz-placeholder {
+  color: #b9c6cb;
+}
+#text-box .invisible-input::-moz-placeholder {
+  color: #b9c6cb;
+}
+#text-box .invisible-input:-ms-input-placeholder {
+  color: #b9c6cb;
+}
+#text-box .invisible-input:hover {
+  outline-color: #f9f8f1;
+  background-color: #f9f8f1;
+}
+#text-box .invisible-input:focus {
+  outline-color: #f9f8f1;
+  background-color: #fcfbf8;
+}
+#text-box h2:hover {
+  cursor: pointer;
+}
+#text-box .add {
+  font-size: 2em;
+  cursor: pointer;
+  text-align: center;
+}
+#text-box .add:hover {
+  background-color: #f9f8f1;
+}
+#text-box .add:active {
+  padding-top: 1px;
+}

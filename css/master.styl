@@ -1,0 +1,43 @@
+// This is anything with a textbox
+
+$bg-color = #f3f2e3
+$main-color = #5487bc
+$text-color = #586E75
+$hover-color = ($bg-color + 50%)
+$serif = "Droid Serif",Georgia,"Times New Roman",Times,serif
+
+placeholder($c) 
+   &::-webkit-input-placeholder 
+      color: $c
+   
+
+   /* Firefox 18- */
+   &:-moz-placeholder  
+      color: $c  
+   
+
+   /* Firefox 19+ */
+   &::-moz-placeholder   
+      color: $c  
+   
+
+   &:-ms-input-placeholder   
+      color: $c  
+   
+
+body
+   background-color: $bg-color
+   color: $text-color
+   font-family: Arial 
+
+h1, h2, h3, h4, h5, h6
+   font-family: $serif
+   text-rendering: optimizelegibility;
+   color: $text-color
+
+h2
+   border-bottom: $hover-color solid 2px;
+
+
+@import 'styl/*'
+
