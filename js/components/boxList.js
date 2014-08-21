@@ -4,11 +4,12 @@ var React = require('react');
 var AddingButton = require('./addButton.js').AddingButton;
 var Box = require('./box.js').comp;
 
+/**
+ * 
+ **/
 exports.comp = React.createClass({
    render: function () {
       var that = this;
-
-      console.log("list", this.props.list);
 
       return (
       <div>
