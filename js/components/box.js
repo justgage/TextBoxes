@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-exports.Box = React.createClass({
+exports.comp = React.createClass({
    render : function () {
       return <div className="border">
             {this.props.children}

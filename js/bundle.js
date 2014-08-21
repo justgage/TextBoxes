@@ -1,13 +1,85 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/home/justgage/code/js/text-boxes/js/app.js":[function(require,module,exports){
 /** @jsx React.DOM */
 
+// Libs
 var React = require('react');
-
 var AS = require('ampersand-state');
 
+// Components
 var Add = require('./components/addButton.js');
-var Title = require('./components/title.js').Title;
-var Box = require('./components/box.js').Box;
+var Title = require('./components/title.js').comp;
+var Box = require('./components/box.js').comp;
+var AddingButton = require('./components/addingList.js').comp;
+
+/**
+ * This is a list that will keep track of the different types of content
+ */
+var TypesList = {
+
+};
+
+
+// Models
+
+/**
+ * This will create a list that will represent the current
+ * state
+ */
+var AddList = function () {
+   var list = [];
+
+   var events = [];
+
+   // public stuff
+   var pub = {
+      emit : emit,
+      onChange : onChange,
+      add : add,
+      remove : remove,
+      get : get,
+      move : move
+   };
+
+   function emit() {
+      for (var i = 0, len = events.length; i < len; i++) {
+         events[i]();
+         console.log("event " + i + " fired");
+      }
+   }
+
+   function onChange(func) {
+      events.push(func);
+   }
+
+   function add(nth ,item) {
+      list.splice(nth, 0, item);
+      emit();
+   }
+
+   function remove(nth ,item) {
+      list.splice(nth, 1);
+      emit();
+   }
+
+   function get(nth) {
+      if(typeof id === "undefined") {
+         return list;
+      } else {
+         return list[nth];
+      }
+   }
+
+   function move(a, b) {
+      // remove item
+      var temp = list.splice(a, 1);
+      // place it back
+      list.splice(b, 0, temp);
+      emit();
+   }
+
+   return pub;
+
+};
 
 
 var text3 = AS.extend({
@@ -18,32 +90,23 @@ var text3 = AS.extend({
 
 text3.text = "This is coming from ampersand-state";
 
-var list = [
+var addingList = AddList();
+
+addingList.add(0, (
    Title({model: text3})
-];
+));
 
-var add = function(list, i) {
-   console.log("adding to list?");
-   //list.
-}
 
-React.renderComponent((
-         React.DOM.div(null, 
-      Add.AddingButton(null), 
-      list.map(function(object, i) {
-         return (
-            React.DOM.div({key: i}, 
-            Box(null, object), 
-            Add.AddingButton({index: i, addAaction: add}))
-                );
-      })
-      )),
-      document.getElementById("text-box"));
+
+React.renderComponent(
+   AddingList({list: addingList}),
+   document.getElementById("text-box")
+);
 
 
 
 
-},{"./components/addButton.js":"/home/justgage/code/js/text-boxes/js/components/addButton.js","./components/box.js":"/home/justgage/code/js/text-boxes/js/components/box.js","./components/title.js":"/home/justgage/code/js/text-boxes/js/components/title.js","ampersand-state":"/home/justgage/node_modules/ampersand-state/ampersand-state.js","react":"/home/justgage/node_modules/react/react.js"}],"/home/justgage/code/js/text-boxes/js/components/addButton.js":[function(require,module,exports){
+},{"./components/addButton.js":"/home/justgage/code/js/text-boxes/js/components/addButton.js","./components/addingList.js":"/home/justgage/code/js/text-boxes/js/components/addingList.js","./components/box.js":"/home/justgage/code/js/text-boxes/js/components/box.js","./components/title.js":"/home/justgage/code/js/text-boxes/js/components/title.js","ampersand-state":"/home/justgage/node_modules/ampersand-state/ampersand-state.js","react":"/home/justgage/node_modules/react/react.js"}],"/home/justgage/code/js/text-boxes/js/components/addButton.js":[function(require,module,exports){
 /** @jsx React.DOM */
 var React = require('react');
 
@@ -72,12 +135,34 @@ exports.AddingButton = React.createClass({displayName: 'AddingButton',
 });
 
 
+},{"react":"/home/justgage/node_modules/react/react.js"}],"/home/justgage/code/js/text-boxes/js/components/addingList.js":[function(require,module,exports){
+/** @jsx React.DOM */
+
+var React = require('react');
+
+exports.comp = React.createClass({displayName: 'comp',
+   render: function () {
+
+      return (React.DOM.div(null, 
+         Add.AddingButton({index: "0"}), 
+            this.props.list.get().map(function(object, i) {
+               return (
+                  React.DOM.div({key: i}, 
+                     Box(null, object), 
+                     Add.AddingButton({index: i + 1, addAaction: addingList.add})
+                  )
+             );})
+            
+            ));
+   }
+});
+
 },{"react":"/home/justgage/node_modules/react/react.js"}],"/home/justgage/code/js/text-boxes/js/components/box.js":[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react');
 
-exports.Box = React.createClass({displayName: 'Box',
+exports.comp = React.createClass({displayName: 'comp',
    render : function () {
       return React.DOM.div({className: "border"}, 
             this.props.children
@@ -90,7 +175,7 @@ exports.Box = React.createClass({displayName: 'Box',
 
 var React = require('react');
 
-exports.Title = React.createClass({displayName: 'Title',
+exports.comp = React.createClass({displayName: 'comp',
 
    getInitialState : function() {
       return { 

@@ -2,7 +2,7 @@
 
 var React = require('react');
 
-exports.Title = React.createClass({
+exports.comp = React.createClass({
 
    getInitialState : function() {
       return { 

@@ -1,0 +1,23 @@
+{
+  "name": "scripts",
+  "version": "0.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "devDependencies": {
+    "envify": "~1.2.1",
+    "react": "~0.10.0",
+    "browserify": "~4.2.0",
+    "gulp": "~3.8.5",
+    "gulp-notify": "~1.4.0",
+    "gulp-util": "~2.2.19",
+    "reactify": "~0.13.1",
+    "vinyl-source-stream": "~0.1.1",
+    "watchify": "~0.10.2",
+    "livereload": "~0.3.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause"
+}
