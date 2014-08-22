@@ -1,40 +1,23 @@
 /** @jsx React.DOM */
 
-
 // Libs
-var React = require('react');
-var AS = require('ampersand-state');
-
-// Dispatcher
-var dispatcher = require('./Dispatcher.js');
+window.React = require('react');
 
 // View-Controllers
-var Title = require('./views/boxTypes/title.js').comp;
 var Boxlist = require('./views/boxList.js').comp;
 
 // Stores
 var BoxListStore = require('./stores/boxList.js').store;
-var Types = require('./views/boxTypes');
-
-console.log(Types);
-
-var text3 = AS.extend({
-   props: {
-      text: 'string'
-   }
-});
-
-text3.text = "Live javascript?";
 
 var boxListStore = BoxListStore();
 
-boxListStore.add(0, (
-   <Title model={text3} />
-));
+// Dispatcher
+var Dispatcher = require("./Dispatcher.js");
 
+Dispatcher.register(boxListStore);
 
 React.renderComponent(
-   <Boxlist list={boxListStore} />,
+   <Boxlist listStore={boxListStore} list={boxListStore.get()} />,
    document.getElementById("text-box")
 );
 

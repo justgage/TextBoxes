@@ -8,17 +8,26 @@ var Box = require('./box.js').comp;
  * 
  **/
 exports.comp = React.createClass({
+
+   componentWillMount : function (j) {
+      var that = this;
+      this.props.listStore.onChange(function () {
+         console.log(that.props.list);
+         that.forceUpdate();
+      });
+   },
+
    render: function () {
       var that = this;
 
       return (
       <div>
          <AddingButton index="0" />
-            {that.props.list.get().map(function(object, i) {
+            {that.props.list.map(function(Object, i) {
                return (
                   <div key={i}>
-                     <Box>{object}</Box> 
-                     <AddingButton index={i + 1} addAaction={that.props.list.add} />
+                     <Box><Object /></Box> 
+                     <AddingButton index={i + 1} addAaction={that.props.listStore.add} />
                   </div>
              );})
             }

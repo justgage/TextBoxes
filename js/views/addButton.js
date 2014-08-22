@@ -1,43 +1,43 @@
 /** @jsx React.DOM */
 var React = require('react');
+var Types = require('./boxTypes').list;
 
-exports.AddingPicker = React.createClass({
+module.exports.AddingButton = React.createClass({
+
+   getInitialState : function () {
+      return { open : false };
+   },
+
+   open : function () {
+      console.log("Open!");
+      this.setState({open : !this.state.open});
+   },
+
    render : function () {
-return (<div>
-         {this.props.options.map(function(object, i) {
-         return <div key={i}> {object} </div>;
-         })
-         }</div>
-      );
+      if (this.state.open) {
+         return ( <div className="add" onClick={this.open}>
+            <AddingPicker index={this.props.index} />
+         </div>);
+      } else {
+         return ( <div className="add" onClick={this.open}>+</div>);
+      }
    }
 });
 
-/**
- * @props:
- * - dispatcher : currently used dispatcher
- * - type : type of content such as "Title"
- */
-exports.Option = React.createClass({
-   action : function () {
-      this.props.dispatcher.dispatch("ADD_ITEM", {
-         id : this.props.index,
-         type : this.props.type,
-      });
-   },
+
+var AddingPicker = React.createClass({
    render : function () {
+      var components = [];
+
+      for (var i = 0, len = Types.length; i < len; i++) {
+         var Item = Types[i].icon;
+         components.push(<Item key={i} index={this.props.index} />);
+      }
+
       return (
-         <div onClick={this.action}> 
-            {this.props.children}
+         <div>
+            {components}
          </div>
       );
    }
 });
-
-exports.AddingButton = React.createClass({
-   render : function () {
-      return (
-            <div className="add" onClick={this.action}>+</div>
-            );
-   }
-});
-

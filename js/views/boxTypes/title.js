@@ -1,38 +1,40 @@
 /** @jsx React.DOM */
 
 var React = require('react');
-var Option = require('../addButton.js').AddingOption;
+var Option = require('../Option.js').Option;
 
-exports.comp = React.createClass({
+var comp = React.createClass({
 
    getInitialState : function() {
       return { 
-         text : this.props.model.text
+         text : ""
       };
    },
    save : function (e) {
       this.setState({text : e.target.value});
-      this.props.model.text = this.state.text;
+      // export somehow?
    },
    render : function () {
       var that = this;
       return (
          <h2>
-            <input onChange={that.save} className="invisible-input" type="text" placeholder="Enter Heading Here" value={this.state.text} />
+            <input 
+               onChange={that.save} 
+               className="invisible-input" 
+               type="text" 
+               placeholder="Enter Heading Here" 
+               value={this.state.text} 
+            />
          </h2>
       );
    }
 });
 
-exports.icon = React.createClass({
+exports.comp = comp;
 
-   action : function () {
-      this.props.dispatcher.dispatch("ADD_ITEM", {
-         id : this.props.index,
-         type : "Title"
-      });
-   },
+exports.icon = React.createClass({
    render : function() {
-      return <Option onClick={this.action}>Title</Option>;
+      console.log(comp);
+      return (<Option index={this.props.index} type="Title">H1</Option>);
    }
 });

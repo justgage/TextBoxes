@@ -1,16 +1,19 @@
+var actions = require('../actions/constants.js');
+var boxTypes = require('../views/boxTypes/').object;
+
 /**
  * This will create a list that will represent the current
  * state
  */
 exports.store = function () {
-   var list = [];
-
+   var list = []; 
    var events = [];
 
    // public stuff
    var pub = {
       emit : emit,
       onChange : onChange,
+      recive : recive,
       add : add,
       remove : remove,
       get : get,
@@ -28,8 +31,19 @@ exports.store = function () {
       events.push(func);
    }
 
+   function recive(action, data) {
+      console.log("recived", action, data);
+      switch(action) {
+         case actions.ADD_BOX:
+            console.log("ADD_BOX");
+            add(data.place, data.type);
+            break;
+      }
+   }
+
    function add(nth ,item) {
-      list.splice(nth, 0, item);
+      var Item = boxTypes[item].comp;
+      list.splice(nth, 0, Item);
       emit();
    }
 
@@ -53,6 +67,7 @@ exports.store = function () {
       list.splice(b, 0, temp);
       emit();
    }
+
 
    return pub;
 
