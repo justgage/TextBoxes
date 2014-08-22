@@ -7,7 +7,6 @@ var notify = require('gulp-notify');
  
 var scriptsDir = './js';
 var buildDir = './build';
-
  
 function handleErrors() {
   var args = Array.prototype.slice.call(arguments);

@@ -2,7 +2,7 @@
  * This will create a list that will represent the current
  * state
  */
-exports.model = function () {
+exports.store = function () {
    var list = [];
 
    var events = [];

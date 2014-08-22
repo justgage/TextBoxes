@@ -1,21 +1,22 @@
 /** @jsx React.DOM */
 
+
 // Libs
 var React = require('react');
 var AS = require('ampersand-state');
 
-// Components
-var Title = require('./components/title.js').comp;
-var Box = require('./components/box.js').comp;
-var Boxlist = require('./components/boxList.js').comp;
-var BoxListModel = require('./model/boxList.js').model;
+// Dispatcher
+var dispatcher = require('./Dispatcher.js');
 
-/**
- * This is a list that will keep track of the different types of content
- */
-var TypesList = {
+// View-Controllers
+var Title = require('./views/boxTypes/title.js').comp;
+var Boxlist = require('./views/boxList.js').comp;
 
-};
+// Stores
+var BoxListStore = require('./stores/boxList.js').store;
+var Types = require('./views/boxTypes');
+
+console.log(Types);
 
 var text3 = AS.extend({
    props: {
@@ -25,15 +26,15 @@ var text3 = AS.extend({
 
 text3.text = "Live javascript?";
 
-var boxListModel = BoxListModel();
+var boxListStore = BoxListStore();
 
-boxListModel.add(0, (
+boxListStore.add(0, (
    <Title model={text3} />
 ));
 
 
 React.renderComponent(
-   <Boxlist list={boxListModel} />,
+   <Boxlist list={boxListStore} />,
    document.getElementById("text-box")
 );
 
