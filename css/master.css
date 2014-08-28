@@ -69,3 +69,10 @@ h2 {
 #text-box .add:active {
   padding-top: 1px;
 }
+#text-box .option {
+  width: 25%;
+  float: left;
+}
+#text-box .option:hover {
+  background-color: #fcfbf8;
+}

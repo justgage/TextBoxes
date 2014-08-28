@@ -14,7 +14,7 @@ module.exports.Option = React.createClass({
    },
    render : function () {
       return (
-         <div onClick={this.action}> 
+         <div onClick={this.action} className="option"> 
             {this.props.children}
          </div>
       );

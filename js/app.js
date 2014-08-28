@@ -14,6 +14,8 @@ var Dispatcher = require("./Dispatcher.js");
 
 Dispatcher.register(boxListStore);
 
+window.boxListStore = boxListStore;
+
 React.renderComponent(
    <Boxlist listStore={boxListStore} list={boxListStore.get()} />,
    document.getElementById("text-box")
