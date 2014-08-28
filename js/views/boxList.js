@@ -24,9 +24,10 @@ exports.comp = React.createClass({
       <div>
          <AddingButton index="0" />
             {that.props.list.map(function(Object, i) {
+               var Comp = Object.comp;
                return (
-                  <div key={i}>
-                     <Box><Object /></Box> 
+                  <div key={Object.id}>
+                     <Box><Comp data={Object.data} /></Box> 
                      <AddingButton index={i + 1} addAaction={that.props.listStore.add} />
                   </div>
              );})

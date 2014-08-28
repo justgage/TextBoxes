@@ -8,6 +8,7 @@ var boxTypes = require('../views/boxTypes/').object;
 exports.store = function () {
    var list = []; 
    var events = [];
+   var nextID = 0;
 
    // public stuff
    var pub = {
@@ -27,6 +28,11 @@ exports.store = function () {
       }
    }
 
+   function getNextId() {
+      nextID++;
+      return nextID;
+   }
+
    function onChange(func) {
       events.push(func);
    }
@@ -41,9 +47,10 @@ exports.store = function () {
       }
    }
 
-   function add(nth ,item) {
-      var Item = boxTypes[item].comp;
-      list.splice(nth, 0, Item);
+   function add(nth, typeName) {
+      var instance = boxTypes[typeName].create();
+      instance.id = getNextId();
+      list.splice(nth, 0, instance);
       emit();
    }
 
@@ -70,5 +77,4 @@ exports.store = function () {
 
 
    return pub;
-
 };

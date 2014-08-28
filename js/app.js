@@ -7,9 +7,7 @@ window.React = require('react');
 var Boxlist = require('./views/boxList.js').comp;
 
 // Stores
-var BoxListStore = require('./stores/boxList.js').store;
-
-var boxListStore = BoxListStore();
+var boxListStore = require('./stores/boxList.js').store();
 
 // Dispatcher
 var Dispatcher = require("./Dispatcher.js");
