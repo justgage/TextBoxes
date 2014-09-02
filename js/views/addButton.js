@@ -2,7 +2,6 @@
 var React = require('react');
 var Types = require('./boxTypes').list;
 var Option = require('./Option.js');
-var PreviewButton = require('./previewButton.js');
 
 module.exports.AddingButton = React.createClass({
 
@@ -11,7 +10,6 @@ module.exports.AddingButton = React.createClass({
    },
 
    open : function () {
-      console.log("Open!");
       this.setState({open : !this.state.open});
    },
 

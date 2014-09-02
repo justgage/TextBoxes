@@ -1,6 +1,7 @@
 
 module.exports.object = {
    Title : require("./title.js"),
+   SubTitle : require("./subtitle.js"),
    TextArea : require("./textArea.js")
 };
 

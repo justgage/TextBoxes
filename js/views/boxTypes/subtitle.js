@@ -3,6 +3,8 @@
 var React = require('react');
 var Option = require('../Option.js');
 
+var TYPE = "SubTitle"
+
 // this will create an instance of component
 // with an "data" being it's external data that will
 // be passed in
@@ -27,32 +29,26 @@ var comp = React.createClass({
 
       // NOTE: this relies on passing by refrence
       this.props.data.text = e.target.value;
-      this.autoGrow(e.target);
-   },
-   autoGrow : function(el) {
-      if (el.scrollHeight > el.clientHeight) {
-         el.style.height = el.scrollHeight + "px";
-      }  
    },
    render : function () {
       var that = this;
+      
 
       if (this.props.editing) {
          return (
-            <p>
-               <textarea 
-                  onChange={that.save} 
-                  className="invisible-input noscrollbars" 
-                  placeholder="This can be multi-line text" 
+            <h3>
+               <input 
+                  onChange={this.save} 
+                  className="invisible-input" 
+                  type="text" 
+                  placeholder="Enter Heading Here" 
                   value={this.state.text} 
-                  >
-               </textarea>
-            </p>
+               />
+            </h3>
          );
-      } else { // rendering
-         return (
-            <p>{this.state.text}</p>
-         )
+      }
+      else {
+         return <h3> {this.state.text} </h3>
       }
    }
 });
@@ -62,6 +58,6 @@ exports.comp = comp;
 
 exports.icon = React.createClass({
    render : function() {
-      return (<Option index={this.props.index} type="TextArea">Text Area</Option>);
+      return (<Option index={this.props.index} type={TYPE}>Subtitle</Option>);
    }
 });

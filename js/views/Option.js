@@ -8,7 +8,7 @@ var actions = require('../actions/BoxActions.js');
  * - dispatcher : currently used dispatcher
  * - type : type of content such as "Title"
  */
-module.exports.Option = React.createClass({
+module.exports = React.createClass({
    action : function () {
       actions.addBox(this.props.index, this.props.type);
    },

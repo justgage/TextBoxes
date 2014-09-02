@@ -24,7 +24,6 @@ exports.store = function () {
    function emit() {
       for (var i = 0, len = events.length; i < len; i++) {
          events[i]();
-         console.log("event " + i + " fired");
       }
    }
 
@@ -38,10 +37,8 @@ exports.store = function () {
    }
 
    function recive(action, data) {
-      console.log("recived", action, data);
       switch(action) {
          case actions.ADD_BOX:
-            console.log("ADD_BOX");
             add(data.place, data.type);
             break;
       }
