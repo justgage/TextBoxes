@@ -1,6 +1,8 @@
 /** @jsx React.DOM */
 var React = require('react');
 var Types = require('./boxTypes').list;
+var Option = require('./Option.js');
+var PreviewButton = require('./previewButton.js');
 
 module.exports.AddingButton = React.createClass({
 
@@ -19,7 +21,7 @@ module.exports.AddingButton = React.createClass({
             <AddingPicker index={this.props.index} />
          </div>);
       } else {
-         return ( <div className="add" onClick={this.open}>+</div>);
+         return ( <div className="add" onClick={this.open}></div>);
       }
    }
 });
@@ -34,9 +36,13 @@ var AddingPicker = React.createClass({
          components.push(<Item key={i} index={this.props.index} />);
       }
 
+
       return (
          <div>
+            <p>Click a option below to insert a new type of input</p>
             {components}
+            <Option key={ Infinity } type="Cancel">Cancel</Option>
+            <div className="clearfix" />
          </div>
       );
    }

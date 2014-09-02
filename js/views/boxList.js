@@ -2,7 +2,10 @@
 
 var React = require('react');
 var AddingButton = require('./addButton.js').AddingButton;
+var PreviewButton = require('./previewButton.js');
 var Box = require('./box.js').comp;
+
+var previewing = false;
 
 /**
  * 
@@ -22,6 +25,7 @@ exports.comp = React.createClass({
 
       return (
       <div>
+         <PreviewButton bool={previewing} />
          <AddingButton index="0" />
             {that.props.list.map(function(Object, i) {
                var Comp = Object.comp;
