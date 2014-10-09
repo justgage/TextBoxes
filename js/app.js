@@ -2,6 +2,7 @@
 
 // Libs
 window.React = require('react');
+React.initializeTouchEvents(true);
 
 // View-Controllers
 var Boxlist = require('./views/boxList.js').comp;

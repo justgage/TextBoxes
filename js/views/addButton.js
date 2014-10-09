@@ -15,7 +15,7 @@ module.exports.AddingButton = React.createClass({
 
    render : function () {
       if (this.state.open) {
-         return ( <div className="add" onClick={this.open}>
+         return ( <div className="add" onTouch={this.open} onClick={this.open}>
             <AddingPicker index={this.props.index} />
          </div>);
       } else {
