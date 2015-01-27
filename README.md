@@ -1,4 +1,6 @@
-# TextBoxes (ALPHA)
+# TextBoxes (ALPHA) 
+
+(DEMO)[http://justgage.github.io/TextBoxes/]
 
 This is a modular way to compose blog posts, webpage, etc, by using block like peices rather than a full microsoft work like editor. Some examples of a "TextBox" would be a Title, a Picture, a Markdown Feild or whatever.
 
